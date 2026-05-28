@@ -36,6 +36,18 @@ body{
 }
 
 /* NAV */
+/* Typewriter */
+#typewriter{
+  display:inline;
+  border-right:2px solid #2997ff;
+  padding-right:3px;
+  animation:blink 0.75s step-end infinite;
+}
+@keyframes blink{
+  0%,100%{border-color:#2997ff}
+  50%{border-color:transparent}
+}
+
 /* Hamburger menu */
 #hamburger{
   display:none;
@@ -578,7 +590,7 @@ footer{
       <span class="accent">Chunduru</span>
     </h1>
     <div class="hero-rule"></div>
-    <p class="hero-role">Building Android that scales.</p>
+    <p class="hero-role"><span id="typewriter"></span></p>
     <p class="hero-tagline">Fortune 500 production apps at massive scale.<br>Walmart · LinkedIn · Visa · Wells Fargo.</p>
     <div class="hero-ctas">
       <a href="https://www.linkedin.com/in/sai-prakash-chunduru" class="btn-primary" target="_blank">View LinkedIn</a>
@@ -962,6 +974,50 @@ document.addEventListener('click', (e) => {
     closeMobileMenu();
   }
 });
+</script>
+
+
+<script>
+// Typewriter effect
+const roles = [
+  'Building Android that scales.',
+  'Senior Android Engineer.',
+  'Kotlin & MVVM Specialist.',
+  'Clean Architecture Advocate.',
+  'Fortune 500 App Builder.',
+  '10+ Years of Shipping.'
+];
+
+let roleIdx = 0;
+let charIdx = 0;
+let deleting = false;
+let pauseTimer = null;
+const el = document.getElementById('typewriter');
+
+function type() {
+  if (!el) return;
+  const current = roles[roleIdx];
+
+  if (!deleting) {
+    el.textContent = current.substring(0, charIdx + 1);
+    charIdx++;
+    if (charIdx === current.length) {
+      deleting = true;
+      pauseTimer = setTimeout(type, 2000);
+      return;
+    }
+  } else {
+    el.textContent = current.substring(0, charIdx - 1);
+    charIdx--;
+    if (charIdx === 0) {
+      deleting = false;
+      roleIdx = (roleIdx + 1) % roles.length;
+    }
+  }
+  setTimeout(type, deleting ? 40 : 80);
+}
+
+setTimeout(type, 1200);
 </script>
 
 </body>
