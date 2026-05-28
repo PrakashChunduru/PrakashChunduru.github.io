@@ -42,23 +42,29 @@ body{
 /* Company tooltip cards */
 .co{position:relative}
 .co-tooltip{
-  position:absolute;left:100%;top:50%;
-  transform:translateY(-50%) translateX(12px) scale(0.92);
-  background:rgba(15,15,18,0.97);
+  position:absolute;left:50%;bottom:calc(100% + 12px);
+  transform:translateX(-50%) translateY(8px) scale(0.94);
+  background:rgba(12,12,16,0.98);
   border:0.5px solid rgba(255,255,255,0.12);
   border-radius:16px;
   padding:18px 20px;
-  width:240px;
+  width:260px;
   opacity:0;pointer-events:none;
   transition:opacity 0.25s ease,transform 0.3s cubic-bezier(0.16,1,0.3,1);
-  z-index:100;
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  box-shadow:0 20px 48px rgba(0,0,0,0.6);
+  z-index:200;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 24px 56px rgba(0,0,0,0.7),0 0 0 0.5px rgba(255,255,255,0.06);
+}
+.co-tooltip::after{
+  content:'';
+  position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;
+  border-top-color:rgba(255,255,255,0.1);
 }
 .co:hover .co-tooltip{
   opacity:1;pointer-events:all;
-  transform:translateY(-50%) translateX(12px) scale(1);
+  transform:translateX(-50%) translateY(0) scale(1);
 }
 .co-tooltip-title{
   font-size:14px;font-weight:600;
@@ -543,19 +549,60 @@ nav{
 .stag:hover{background:rgba(41,151,255,0.1);border-color:rgba(41,151,255,0.28);color:#2997ff}
 
 /* EDUCATION */
-.edu-section{background:#000;border-top:0.5px solid rgba(255,255,255,0.06);padding:130px 0}
+.edu-section{
+  background:#000;
+  border-top:0.5px solid rgba(255,255,255,0.06);
+  padding:130px 0;
+  position:relative;
+  overflow:hidden;
+}
+.edu-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 60% 80% at 85% 50%, rgba(241,184,45,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 15% 50%, rgba(0,0,0,0.8) 0%, transparent 80%);
+  pointer-events:none;
+  z-index:0;
+}
+.edu-section::after{
+  content:'MIZZOU';
+  position:absolute;
+  right:-40px;top:50%;
+  transform:translateY(-50%);
+  font-size:clamp(120px,18vw,220px);
+  font-weight:700;
+  letter-spacing:-8px;
+  color:rgba(241,184,45,0.04);
+  pointer-events:none;
+  z-index:0;
+  user-select:none;
+  white-space:nowrap;
+}
+.edu-inner{position:relative;z-index:1}
 .edu-inner{max-width:1100px;margin:0 auto;padding:0 44px}
 .edu-card{
-  background:rgba(255,255,255,0.022);
-  border:0.5px solid rgba(255,255,255,0.07);
+  background:rgba(241,184,45,0.03);
+  border:0.5px solid rgba(241,184,45,0.12);
   border-radius:24px;padding:56px 60px;
   display:flex;align-items:center;gap:52px;
   margin-top:80px;
-  transition:background 0.25s,border-color 0.3s;
+  transition:background 0.25s,border-color 0.3s,box-shadow 0.3s;
 }
-.edu-card:hover{background:rgba(255,255,255,0.04);border-color:rgba(41,151,255,0.18)}
-.edu-icon{width:84px;height:84px;border-radius:22px;background:rgba(41,151,255,0.08);border:0.5px solid rgba(41,151,255,0.15);display:flex;align-items:center;justify-content:center;font-size:42px;flex-shrink:0}
-.edu-degree{font-size:26px;font-weight:700;letter-spacing:-0.5px;color:#f5f5f7;margin-bottom:8px}
+.edu-card:hover{
+  background:rgba(241,184,45,0.06);
+  border-color:rgba(241,184,45,0.25);
+  box-shadow:0 0 60px rgba(241,184,45,0.06);
+}
+.edu-icon{
+  width:84px;height:84px;border-radius:22px;
+  background:rgba(241,184,45,0.1);
+  border:0.5px solid rgba(241,184,45,0.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:42px;flex-shrink:0;
+}
+.edu-degree{font-size:26px;font-weight:700;letter-spacing:-0.5px;color:#F1B82D;margin-bottom:8px}
 .edu-school{font-size:17px;font-weight:300;color:rgba(245,245,247,0.42);margin-bottom:6px}
 .edu-year{font-size:14px;color:rgba(245,245,247,0.22)}
 
@@ -960,7 +1007,11 @@ footer{
 <!-- EDUCATION -->
 <div class="edu-section" id="education">
   <div class="edu-inner">
-    <p class="eyebrow reveal">Education</p>
+    <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:18px">
+        <div style="width:32px;height:2px;background:#F1B82D;border-radius:2px"></div>
+        <span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#F1B82D">Education</span>
+        <div style="width:32px;height:2px;background:#F1B82D;border-radius:2px"></div>
+      </div>
     <h2 class="headline reveal">The foundation.</h2>
     <div class="edu-card reveal">
       <div class="edu-icon">🎓</div>
