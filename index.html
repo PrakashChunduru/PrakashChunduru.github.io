@@ -36,6 +36,19 @@ body{
 }
 
 /* NAV */
+/* Cursor spotlight */
+#cursor-glow{
+  position:fixed;
+  width:500px;height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(41,151,255,0.055) 0%,transparent 70%);
+  pointer-events:none;
+  z-index:1;
+  transform:translate(-50%,-50%);
+  transition:opacity 0.4s ease;
+  opacity:0;
+}
+
 /* Back to top */
 #btt{
   position:fixed;bottom:36px;right:36px;z-index:9998;
@@ -489,6 +502,7 @@ footer{
 
 <!-- NAV -->
 <div id="progress-bar"></div>
+<div id="cursor-glow"></div>
 <nav id="nav">
   <a class="nav-brand" href="#">Sai Prakash Chunduru</a>
   <ul class="nav-links">
@@ -850,6 +864,25 @@ window.addEventListener('scroll', () => {
 }, {passive:true});
 btt.addEventListener('click', () => {
   window.scrollTo({top:0, behavior:'smooth'});
+});
+</script>
+
+
+<script>
+// Cursor spotlight
+const glow = document.getElementById('cursor-glow');
+let visible = false;
+window.addEventListener('mousemove', (e) => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+  if(!visible){
+    glow.style.opacity = '1';
+    visible = true;
+  }
+}, {passive:true});
+window.addEventListener('mouseleave', () => {
+  glow.style.opacity = '0';
+  visible = false;
 });
 </script>
 
