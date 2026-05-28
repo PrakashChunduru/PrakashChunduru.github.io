@@ -39,6 +39,52 @@ body{
 }
 
 /* NAV */
+/* Company tooltip cards */
+.co{position:relative}
+.co-tooltip{
+  position:absolute;left:100%;top:50%;
+  transform:translateY(-50%) translateX(12px) scale(0.92);
+  background:rgba(15,15,18,0.97);
+  border:0.5px solid rgba(255,255,255,0.12);
+  border-radius:16px;
+  padding:18px 20px;
+  width:240px;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.25s ease,transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  z-index:100;
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 20px 48px rgba(0,0,0,0.6);
+}
+.co:hover .co-tooltip{
+  opacity:1;pointer-events:all;
+  transform:translateY(-50%) translateX(12px) scale(1);
+}
+.co-tooltip-title{
+  font-size:14px;font-weight:600;
+  color:#f5f5f7;margin-bottom:4px;
+}
+.co-tooltip-role{
+  font-size:12px;color:rgba(245,245,247,0.45);
+  margin-bottom:12px;
+}
+.co-tooltip-achievement{
+  font-size:12px;color:rgba(245,245,247,0.6);
+  line-height:1.6;padding-top:10px;
+  border-top:0.5px solid rgba(255,255,255,0.06);
+}
+.co-tooltip-tag{
+  display:inline-block;
+  font-size:11px;font-weight:500;
+  background:rgba(41,151,255,0.1);
+  color:#2997ff;border:0.5px solid rgba(41,151,255,0.2);
+  padding:3px 10px;border-radius:980px;
+  margin-bottom:8px;
+}
+@media(max-width:900px){
+  .co-tooltip{display:none}
+}
+
 /* Image fade in on load */
 img{
   opacity:0;
@@ -642,13 +688,93 @@ footer{
       <p>I specialize in <strong>Clean Architecture, MVVM, and Kotlin-first development</strong> — writing code that scales and that other engineers love to work with.</p>
     </div>
     <div class="company-stack reveal-right">
-      <div class="co"><div class="co-dot" style="background:#0071E3">W</div><div class="co-info"><div class="co-name">Walmart Global Tech</div><div class="co-sub">Senior Android Engineer</div></div><div class="co-yr">2025–Now</div></div>
-      <div class="co"><div class="co-dot" style="background:#0077B5">in</div><div class="co-info"><div class="co-name">LinkedIn</div><div class="co-sub">Senior Android Developer</div></div><div class="co-yr">2024–25</div></div>
-      <div class="co"><div class="co-dot" style="background:#7B3F00">M</div><div class="co-info"><div class="co-name">Marriott Vacations</div><div class="co-sub">Senior Android Developer</div></div><div class="co-yr">2022–23</div></div>
-      <div class="co"><div class="co-dot" style="background:#1A1F71">V</div><div class="co-info"><div class="co-name">Visa Inc.</div><div class="co-sub">Senior Android Developer</div></div><div class="co-yr">2020–22</div></div>
-      <div class="co"><div class="co-dot" style="background:#C0392B">WF</div><div class="co-info"><div class="co-name">Wells Fargo</div><div class="co-sub">Android Developer II</div></div><div class="co-yr">2018–20</div></div>
-      <div class="co"><div class="co-dot" style="background:#E21A1C">M</div><div class="co-info"><div class="co-name">Macy's</div><div class="co-sub">Android Developer</div></div><div class="co-yr">2015–18</div></div>
+      <div class="co">
+        <div class="co-dot" style="background:#0071E3">W</div>
+        <div class="co-info">
+          <div class="co-name">Walmart Global Tech</div>
+          <div class="co-sub">Senior Android Engineer</div>
+        </div>
+        <div class="co-yr">2025–Now</div>
+        <div class="co-tooltip">
+          <div class="co-tooltip-tag">Current</div>
+          <div class="co-tooltip-title">Walmart Global Tech</div>
+          <div class="co-tooltip-role">Senior Android Engineer · 2025–Now</div>
+          <div class="co-tooltip-achievement">Shipped HVAC Consultation Wizard — 4-step flow with 80 analytics panels and 12K+ unit tests.</div>
+        </div>
+      </div>
+      <div class="co">
+        <div class="co-dot" style="background:#0077B5">in</div>
+        <div class="co-info">
+          <div class="co-name">LinkedIn</div>
+          <div class="co-sub">Senior Android Developer</div>
+        </div>
+        <div class="co-yr">2024–25</div>
+        <div class="co-tooltip">
+          <div class="co-tooltip-tag">Social</div>
+          <div class="co-tooltip-title">LinkedIn</div>
+          <div class="co-tooltip-role">Senior Android Developer · 2024–25</div>
+          <div class="co-tooltip-achievement">Led Java → Kotlin migration. Architected MVVM modules for feed, reactions, comments, and LinkedIn Live.</div>
+        </div>
+      </div>
+      <div class="co">
+        <div class="co-dot" style="background:#7B3F00">M</div>
+        <div class="co-info">
+          <div class="co-name">Marriott Vacations</div>
+          <div class="co-sub">Senior Android Developer</div>
+        </div>
+        <div class="co-yr">2022–23</div>
+        <div class="co-tooltip">
+          <div class="co-tooltip-tag">Travel</div>
+          <div class="co-tooltip-title">Marriott Vacations</div>
+          <div class="co-tooltip-role">Senior Android Developer · 2022–23</div>
+          <div class="co-tooltip-achievement">Built 4 resort booking apps with access to 7,000+ properties worldwide using Google Maps API.</div>
+        </div>
+      </div>
+      <div class="co">
+        <div class="co-dot" style="background:#1A1F71">V</div>
+        <div class="co-info">
+          <div class="co-name">Visa Inc.</div>
+          <div class="co-sub">Senior Android Developer</div>
+        </div>
+        <div class="co-yr">2020–22</div>
+        <div class="co-tooltip">
+          <div class="co-tooltip-tag">Payments</div>
+          <div class="co-tooltip-title">Visa Inc.</div>
+          <div class="co-tooltip-role">Senior Android Developer · 2020–22</div>
+          <div class="co-tooltip-achievement">Delivered PCI-compliant contactless payments and transaction history for Visa's global Android app.</div>
+        </div>
+      </div>
+      <div class="co">
+        <div class="co-dot" style="background:#C0392B">WF</div>
+        <div class="co-info">
+          <div class="co-name">Wells Fargo</div>
+          <div class="co-sub">Android Developer II</div>
+        </div>
+        <div class="co-yr">2018–20</div>
+        <div class="co-tooltip">
+          <div class="co-tooltip-tag">Banking</div>
+          <div class="co-tooltip-title">Wells Fargo</div>
+          <div class="co-tooltip-role">Android Developer II · 2018–20</div>
+          <div class="co-tooltip-achievement">Led Android for flagship banking app — 85%+ automated test coverage for millions of customers.</div>
+        </div>
+      </div>
+      <div class="co">
+        <div class="co-dot" style="background:#E21A1C">M</div>
+        <div class="co-info">
+          <div class="co-name">Macy's</div>
+          <div class="co-sub">Android Developer</div>
+        </div>
+        <div class="co-yr">2015–18</div>
+        <div class="co-tooltip">
+          <div class="co-tooltip-tag">Retail</div>
+          <div class="co-tooltip-title">Macy's</div>
+          <div class="co-tooltip-role">Android Developer · 2015–18</div>
+          <div class="co-tooltip-achievement">Built shopping, loyalty, and store locator features for one of America's largest retail apps.</div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
   </div>
 </div>
 
